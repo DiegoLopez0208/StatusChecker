@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "dgSpecHash": "zizNxht7S7mG5oonYpUZYGKxMSU1wy8yOt0L67PCDn/TZeNq7CwlozrLk+80ueZixlOEZ1dC5eyIZZZAFAg3Xw==",
+  "success": false,
+  "projectFilePath": "C:\\Users\\shado\\OneDrive\\Documentos\\My Games\\Terraria\\tModLoader\\ModSources\\StatusChecker\\StatusChecker.csproj",
+  "expectedPackageFiles": [],
+  "logs": [
+    {
+      "code": "NU1100",
+      "level": "Error",
+      "message": "Unable to resolve 'tModLoader.CodeAssist (>= 0.1.0)' for 'net6.0'.",
+      "libraryId": "tModLoader.CodeAssist",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    }
+  ]
+}
