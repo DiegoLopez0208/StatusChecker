@@ -43,6 +43,9 @@ namespace StatusChecker.Items
 			float dps = player.getDPS();
 			float flightTime = player.wingTimeMax;
 			float maxRunSpeed = player.moveSpeed;
+			float manaRegen = player.manaRegen;
+			float hpRegen = player.lifeRegen;
+			float damageReduction = player.endurance;
 
 			int minions = player.maxMinions;
 			int turrets = player.maxTurrets;
@@ -61,6 +64,7 @@ namespace StatusChecker.Items
 			float penetrationArmorRanged = player.GetTotalArmorPenetration(DamageClass.Ranged);
 			float penetrationArmorMagic = player.GetTotalArmorPenetration(DamageClass.Magic);
 			float penetrationArmorThrowing = player.GetTotalArmorPenetration(DamageClass.Throwing);
+
 
 
 			float[] critValues = { meleeCrit, rangedCrit, magicCrit, thrownCrit };
@@ -94,6 +98,24 @@ namespace StatusChecker.Items
 			{
 				colorClass = "411bfd";
 			}
+			else if (playerClass == "Bard")
+			{
+				colorClass = "66fc79";
+			}
+			else if (playerClass == "Healer")
+			{
+				colorClass = "ecfb53";
+			}
+			else if (playerClass == "BloodHunter")
+			{
+				colorClass = "b60609";
+			}
+			else if (playerClass == "Rogue")
+			{
+				colorClass = "660202";
+			}
+
+
 			else
 			{
 				colorClass = "fcfcfc";
@@ -106,12 +128,16 @@ namespace StatusChecker.Items
 			TooltipLine line5 = new TooltipLine(Mod, "Tooltip", $"Damage: [c/a00303:{weaponDamage}]       DPS: [c/fdffbb:{dps}]");
 			TooltipLine line6 = new TooltipLine(Mod, "Tooltip", $"[c/51fafd:Additional Statistics:] ");
 			TooltipLine line7 = new TooltipLine(Mod, "Tooltip", $"Max.Flight: [c/a898f7:{flightTime}%]       Speed: [c/436af8:{maxRunSpeed}]");
+			TooltipLine line8 = new TooltipLine(Mod, "Tooltip", $"Dmg. Reduction: [c/fa9e2f:{damageReduction}] Hp Regen.: [c/ee706a:{hpRegen}]");
 
 
 			TooltipLine lineCA = new TooltipLine(Mod, "Tooltip", $"Crit. Chance: [c/fe4b4b:{averageCrit}%]       Att. Speed: [c/c2ffbb:{averageAS}]");
 			TooltipLine lineA = new TooltipLine(Mod, "Tooltip", $"Arm. Penetration: [c/878787:{averagePA}]");
 
+			TooltipLine lineM = new TooltipLine(Mod, "Tooltip", $"Mana Regen.: [c/6a90ee:{manaRegen}]");
+
 			TooltipLine lineMT = new TooltipLine(Mod, "Tooltip", $"Max. Minions: [c/41f84c:{minions}]       Max. Turrets: [c/ad31f9:{turrets}]");
+
 
 
 
@@ -121,7 +147,7 @@ namespace StatusChecker.Items
 			tooltips.Add(line4);
 			tooltips.Add(line5);
 
-			if (playerClass == "Melee" || playerClass == "Ranged")
+			if (playerClass == "Melee" || playerClass == "Ranged" || playerClass == "Bard" || playerClass == "Healer" || playerClass == "Rogue" || playerClass == "BloodHunter")
 			{
 				tooltips.Add(lineCA);
 				tooltips.Add(lineA);
@@ -133,10 +159,12 @@ namespace StatusChecker.Items
 			else if (playerClass == "Mage")
 			{
 				tooltips.Add(lineCA);
+				tooltips.Add(lineM);
 			}
 
 			tooltips.Add(line6);
 			tooltips.Add(line7);
+			tooltips.Add(line8);
 
 
 
@@ -163,13 +191,9 @@ namespace StatusChecker.Items
 		{
 			Item heldItem = new Item();
 			heldItem.SetDefaults(heldItemType);
-
-
-
 			string tipo = heldItem.DamageType.ToString();
 
-
-			if (tipo == "Terraria.ModLoader.MeleeDamageClass" || tipo == "Terraria.ModLoader.MeleeNoSpeedDamageClass")
+			if (tipo == "Terraria.ModLoader.MeleeDamageClass" || tipo == "Terraria.ModLoader.MeleeNoSpeedDamageClass" || tipo == "CalamityMod.TrueMeleeDamageClass")
 			{
 				return "Melee";
 			}
@@ -185,6 +209,23 @@ namespace StatusChecker.Items
 			{
 				return "Mage";
 			}
+			else if (tipo == "ThoriumMod.BardDamage")
+			{
+				return "Bard";
+			}
+			else if (tipo == "ThoriumMod.HealerDamage")
+			{
+				return "Healer";
+			}
+			else if (tipo == "VitalityMod.BloodHunter.BloodHunterClass")
+			{
+				return "BloodHunter";
+			}
+			else if (tipo == "CalamityMod.RogueDamageClass")
+			{
+				return "Rogue";
+			}
+
 			else
 			{
 				return "No Class";
