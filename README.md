@@ -9,6 +9,9 @@ Features:
 . Added compatibility with Calamity / Thorium / Vitality
 . Added classes: Rogue/Healer/Bard/BloodHunter
 
-Coming soon: It is planned to add another type of Stats for the new classes, to display the information in a different way and a different crafting.
+Coming soon: 
+-  Add another type of Stats for the new classes
+-  Display the information in a different way and a different crafting.
+-  Angler Checker (New Item)
 
 
