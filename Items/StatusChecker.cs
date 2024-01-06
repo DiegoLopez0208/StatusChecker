@@ -82,43 +82,43 @@ namespace StatusChecker.Items
 
 			string colorClass;
 
-			if (playerClass == "Melee")
+			switch (playerClass)
 			{
-				colorClass = "f90000";
-			}
-			else if (playerClass == "Ranged")
-			{
-				colorClass = "40f900";
-			}
-			else if (playerClass == "Summoner")
-			{
-				colorClass = "f900f9";
-			}
-			else if (playerClass == "Mage")
-			{
-				colorClass = "411bfd";
-			}
-			else if (playerClass == "Bard")
-			{
-				colorClass = "66fc79";
-			}
-			else if (playerClass == "Healer")
-			{
-				colorClass = "ecfb53";
-			}
-			else if (playerClass == "BloodHunter")
-			{
-				colorClass = "b60609";
-			}
-			else if (playerClass == "Rogue")
-			{
-				colorClass = "660202";
-			}
+				case "Melee":
+					colorClass = "f90000";
+					break;
 
+				case "Ranged":
+					colorClass = "40f900";
+					break;
 
-			else
-			{
-				colorClass = "fcfcfc";
+				case "Summoner":
+					colorClass = "f900f9";
+					break;
+
+				case "Mage":
+					colorClass = "411bfd";
+					break;
+
+				case "Bard":
+					colorClass = "66fc79";
+					break;
+
+				case "Healer":
+					colorClass = "ecfb53";
+					break;
+
+				case "BloodHunter":
+					colorClass = "b60609";
+					break;
+
+				case "Rogue":
+					colorClass = "660202";
+					break;
+
+				default:
+					colorClass = "fcfcfc";
+					break;
 			}
 
 			TooltipLine line1 = new TooltipLine(Mod, "Tooltip", $"[c/00f43f:Basic Statistics:] ");
@@ -169,7 +169,9 @@ namespace StatusChecker.Items
 
 
 
+
 		}
+
 
 		private float CalculateAverage(float[] values)
 		{
@@ -193,47 +195,39 @@ namespace StatusChecker.Items
 			heldItem.SetDefaults(heldItemType);
 			string tipo = heldItem.DamageType.ToString();
 
-			if (tipo == "Terraria.ModLoader.MeleeDamageClass" || tipo == "Terraria.ModLoader.MeleeNoSpeedDamageClass" || tipo == "CalamityMod.TrueMeleeDamageClass")
+			switch (tipo)
 			{
-				return "Melee";
-			}
-			else if (tipo == "Terraria.ModLoader.RangedDamageClass")
-			{
-				return "Ranged";
-			}
-			else if (tipo == "Terraria.ModLoader.SummonDamageClass" || tipo == "Terraria.ModLoader.SummonMeleeSpeedDamageClass")
-			{
-				return "Summoner";
-			}
-			else if (tipo == "Terraria.ModLoader.MagicDamageClass")
-			{
-				return "Mage";
-			}
-			else if (tipo == "ThoriumMod.BardDamage")
-			{
-				return "Bard";
-			}
-			else if (tipo == "ThoriumMod.HealerDamage")
-			{
-				return "Healer";
-			}
-			else if (tipo == "VitalityMod.BloodHunter.BloodHunterClass")
-			{
-				return "BloodHunter";
-			}
-			else if (tipo == "CalamityMod.RogueDamageClass")
-			{
-				return "Rogue";
-			}
+				case "Terraria.ModLoader.MeleeDamageClass":
+				case "Terraria.ModLoader.MeleeNoSpeedDamageClass":
+				case "CalamityMod.TrueMeleeDamageClass":
+					return "Melee";
 
-			else
-			{
-				return "No Class";
+				case "Terraria.ModLoader.RangedDamageClass":
+					return "Ranged";
+
+				case "Terraria.ModLoader.SummonDamageClass":
+				case "Terraria.ModLoader.SummonMeleeSpeedDamageClass":
+					return "Summoner";
+
+				case "Terraria.ModLoader.MagicDamageClass":
+					return "Mage";
+
+				case "ThoriumMod.BardDamage":
+					return "Bard";
+
+				case "ThoriumMod.HealerDamage":
+					return "Healer";
+
+				case "VitalityMod.BloodHunter.BloodHunterClass":
+					return "BloodHunter";
+
+				case "CalamityMod.RogueDamageClass":
+					return "Rogue";
+
+				default:
+					return "No Class";
 			}
 		}
-
-
-
 	}
 }
 

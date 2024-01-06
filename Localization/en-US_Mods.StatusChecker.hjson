@@ -5,4 +5,9 @@ Items: {
 		DisplayName: Status Checker
 		Tooltip: This item shows the player's stats
 	}
+
+	FishMissionChecker: {
+		DisplayName: Fish Mission Checker
+		Tooltip: This item shows information about the fisherman's missions.
+	}
 }
